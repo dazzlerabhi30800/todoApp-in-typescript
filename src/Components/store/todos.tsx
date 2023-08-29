@@ -39,7 +39,7 @@ export default function TodoProvider({ children }: TodosProviderProps) {
 
 
 
-    const [todos, setTodos] = useState<Array<Todo>>(JSON.parse(localStorage.getItem('todos') || "[]") as Todo[] || []);
+    const [todos, setTodos] = useState<Array<Todo>>(JSON.parse(localStorage.getItem('todos') || "[]") || []);
 
     useEffect(() => {
         localStorage.setItem("todos", JSON.stringify(todos));

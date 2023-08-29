@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -10,6 +12,10 @@
   color: #fff;
   background: #171e27;
   text-align: center;
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -34,6 +40,11 @@ a {
   font-size: 1.3rem;
 }
 
+a.active {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
 
 .task-wrapper {
   display: flex;
@@ -49,10 +60,10 @@ a {
   display: flex;
   align-items: center;
   width: 100%;
-  background: linear-gradient(45deg, rgb(0, 166, 255), #f841a3);
+  background: linear-gradient(to left, rgb(0, 166, 255), #f841a3);
   font-size: 1.1rem;
   font-weight: 500;
-  color: #000;
+  color: #f2ecec;
   border-radius: 5px;
   justify-content: space-between;
   padding: 1rem;
@@ -61,11 +72,12 @@ a {
 button {
   border: none;
   outline: none;
+  font-weight: 500;
 }
 
 .task button {
   padding: 8px 15px;
-  background: #0680fa;
+  background: #323232;
   color: #fff;
 }
 
@@ -85,7 +97,6 @@ form button {
   background: #f677ce;
   color: #0b0b0b;
   font-size: 1rem;
-  transition: 0.3s linear;
 }
 
 
@@ -99,11 +110,18 @@ form>input {
 
 
 @media (hover: hover) {
-  form button {
+  button {
     cursor: pointer;
+    transition: 0.3s linear;
   }
 
   form button:hover {
     background: #f86a6a;
+  }
+
+
+  .task button:hover {
+    background: #f3f3f3;
+    color: #000;
   }
 }
