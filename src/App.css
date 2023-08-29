@@ -82,6 +82,11 @@ button {
 }
 
 
+.task.completed {
+  opacity: 0.5;
+}
+
+
 form {
   display: flex;
   margin: 1rem 0;
@@ -109,7 +114,20 @@ form>input {
 }
 
 
+/* Input Wrapper  */
+.edit__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.edit__wrapper>input {
+  padding: 8px 12px;
+}
+
+
 @media (hover: hover) {
+
   button {
     cursor: pointer;
     transition: 0.3s linear;
