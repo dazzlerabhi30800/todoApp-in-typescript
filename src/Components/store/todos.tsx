@@ -27,16 +27,19 @@ export const todosContext = createContext<TodoContext | null>(null);
 
 export default function TodoProvider({ children }: TodosProviderProps) {
 
-    const [todos, setTodos] = useState<Array<Todo>>(() => {
-        try {
-            const newTodos = localStorage.getItem('todos') || "[]";
-            return JSON.parse(newTodos) as Todo[];
-        }
-        catch (error) {
-            return [];
-        }
-    });
+    // const [todos, setTodos] = useState<Array<Todo>>(() => {
+    //     try {
+    //         const newTodos = localStorage.getItem('todos') || "[]";
+    //         return JSON.parse(newTodos) as Todo[];
+    //     }
+    //     catch (error) {
+    //         return [];
+    //     }
+    // });
 
+
+
+    const [todos, setTodos] = useState<Array<Todo>>(JSON.parse(localStorage.getItem('todos') || "[]") as Todo[] || []);
 
     useEffect(() => {
         localStorage.setItem("todos", JSON.stringify(todos));
