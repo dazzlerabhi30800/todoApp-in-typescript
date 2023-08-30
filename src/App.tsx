@@ -3,14 +3,14 @@ import Navbar from './Components/Navbar';
 import Todos from './Components/Todos';
 import AddTodo from './Components/addTodo';
 import { useTodos } from './Components/store/todos';
-import { DragDropContext } from 'react-beautiful-dnd';
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 
 
 function App() {
   const { todos, setSortedTodos } = useTodos();
 
-  const dragEnd = (event: any) => {
+  const dragEnd = (event: DropResult) => {
     const { source, destination } = event;
 
     if (!destination) return;
@@ -27,7 +27,7 @@ function App() {
     setSortedTodos(active);
   }
   return (
-    <DragDropContext onDragEnd={(e) => dragEnd(e)}>
+    <DragDropContext onDragEnd={(event) => dragEnd(event)}>
       <main>
         <h1>Todo App in React + Typescript</h1>
         <AddTodo />
