@@ -32,7 +32,7 @@ const Todos = () => {
                 >
                     {filteredData.map((todo, index) => (
                         <Draggable index={index} key={todo.id} draggableId={todo.id}>
-                            {(provided, snapshot) => (
+                            {(provided) => (
                                 <div
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
