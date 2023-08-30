@@ -1,21 +1,19 @@
-import { useTodos } from "./store/todos"
-import { useSearchParams } from 'react-router-dom';
+import { useTodos } from "./store/todos";
+import { useSearchParams } from "react-router-dom";
 import EditInput from "./EditInput";
-
-
+import { Draggable, Droppable } from "react-beautiful-dnd";
 
 const Todos = () => {
     const { todos, handleComplete, deleteTodo, handleEdit } = useTodos();
     const [searchParams] = useSearchParams();
     let todosData = searchParams.get("todos");
 
-
     function filteredTodos() {
         switch (todosData) {
             case "completed":
-                return todos.filter(todo => todo.completed === true);
+                return todos.filter((todo) => todo.completed === true);
             case "active":
-                return todos.filter(todo => todo.completed !== true);
+                return todos.filter((todo) => todo.completed !== true);
             default:
                 return todos;
         }
@@ -23,24 +21,52 @@ const Todos = () => {
 
     let filteredData = filteredTodos();
 
-
-    return <div className="task-wrapper">
-        {filteredData.map((todo, index) => (
-            <div className={`task ${todo.completed ? "completed" : ""}`} key={index}>
-                <input type="checkbox" id={`${todo.id}--todo`} checked={todo.completed} onChange={() => handleComplete(todo.id)} />
-                {todo.edit &&
-                    <EditInput id={todo.id} task={todo.task} />
-                }
-                {!todo.edit &&
-                    <label contentEditable={todo.edit} htmlFor={`${todo.id}--todo`}>{todo.task}</label>
-                }
-                {!todo.completed && !todo.edit &&
-                    <button onClick={() => handleEdit(todo.id)}>Edit</button>
-                }
-                <button onClick={() => deleteTodo(todo.id)}>Delete</button>
-            </div>
-        ))}
-    </div>
-}
+    return (
+        <Droppable droppableId="taskwrapper">
+            {(provided) => (
+                <div
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                    className="task-wrapper"
+                >
+                    {filteredData.map((todo, index) => (
+                        <Draggable index={index} key={todo.id} draggableId={todo.id}>
+                            {(provided, snapshot) => (
+                                <div
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                    ref={provided.innerRef}
+                                    className={`task ${todo.completed ? "completed" : ""}`}
+                                    id={todo.id}
+                                >
+                                    <input
+                                        type="checkbox"
+                                        id={`${todo.id}--todo`}
+                                        checked={todo.completed}
+                                        onChange={() => handleComplete(todo.id)}
+                                    />
+                                    {todo.edit && <EditInput id={todo.id} task={todo.task} />}
+                                    {!todo.edit && (
+                                        <label
+                                            contentEditable={todo.edit}
+                                            htmlFor={`${todo.id}--todo`}
+                                        >
+                                            {todo.task}
+                                        </label>
+                                    )}
+                                    {!todo.completed && !todo.edit && (
+                                        <button onClick={() => handleEdit(todo.id)}>Edit</button>
+                                    )}
+                                    <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+                                </div>
+                            )}
+                        </Draggable>
+                    ))}
+                    {provided.placeholder}
+                </div>
+            )}
+        </Droppable>
+    );
+};
 
 export default Todos;

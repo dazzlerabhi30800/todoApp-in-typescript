@@ -22,6 +22,7 @@ export type TodoContext = {
     deleteTodo: (id: string) => void;
     handleEdit: (id: string) => void;
     completeEdit: (id: string, updatedTask: string) => void;
+    setSortedTodos: (todos: Array<Todo>) => void;
 }
 
 
@@ -29,18 +30,6 @@ export const todosContext = createContext<TodoContext | null>(null);
 
 
 export default function TodoProvider({ children }: TodosProviderProps) {
-
-    // const [todos, setTodos] = useState<Array<Todo>>(() => {
-    //     try {
-    //         const newTodos = localStorage.getItem('todos') || "[]";
-    //         return JSON.parse(newTodos) as Todo[];
-    //     }
-    //     catch (error) {
-    //         return [];
-    //     }
-    // });
-
-
 
     const [todos, setTodos] = useState<Array<Todo>>(JSON.parse(localStorage.getItem('todos') || "[]") || []);
 
@@ -109,10 +98,15 @@ export default function TodoProvider({ children }: TodosProviderProps) {
     }
 
 
+    const setSortedTodos = (todos: Array<Todo>) => {
+        setTodos(todos);
+    }
+
+
 
 
     return (
-        <todosContext.Provider value={{ todos, handleAddTodo, handleComplete, deleteTodo, handleEdit, completeEdit }}>
+        <todosContext.Provider value={{ todos, handleAddTodo, handleComplete, deleteTodo, handleEdit, completeEdit, setSortedTodos }}>
             {children}
         </todosContext.Provider>
     )
