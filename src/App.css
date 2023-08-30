@@ -76,7 +76,7 @@ button {
 }
 
 .task button {
-  padding: 8px 15px;
+  padding: 8px 10px;
   background: #323232;
   color: #fff;
 }
@@ -114,6 +114,32 @@ form>input {
 }
 
 
+/* Button Container */
+.button__container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  --color: #905df6;
+}
+
+.button__container button {
+  font-size: 1.1rem;
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid var(--color);
+  color: var(--color);
+}
+
+.button__container button:nth-child(1) {
+  --color: #8847f2;
+}
+
+
+.button__container button:nth-child(2) {
+  --color: #f22d0a;
+}
+
+
 /* Input Wrapper  */
 .edit__wrapper {
   display: flex;
@@ -123,6 +149,13 @@ form>input {
 
 .edit__wrapper>input {
   padding: 8px 12px;
+}
+
+.edit__wrapper>button {
+  border: 2px solid #f97df9;
+  background: #fff;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 
@@ -139,7 +172,8 @@ form>input {
 
 
   .task button:hover {
-    background: #f3f3f3;
+    background: #fbfbfb;
     color: #000;
+    border-color: transparent;
   }
 }

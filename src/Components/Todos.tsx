@@ -2,6 +2,7 @@ import { useTodos } from "./store/todos";
 import { useSearchParams } from "react-router-dom";
 import EditInput from "./EditInput";
 import { Draggable, Droppable } from "react-beautiful-dnd";
+import { BiSolidEditAlt, BiTrash } from 'react-icons/bi';
 
 const Todos = () => {
     const { todos, handleComplete, deleteTodo, handleEdit } = useTodos();
@@ -54,10 +55,12 @@ const Todos = () => {
                                             {todo.task}
                                         </label>
                                     )}
-                                    {!todo.completed && !todo.edit && (
-                                        <button onClick={() => handleEdit(todo.id)}>Edit</button>
-                                    )}
-                                    <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+                                    <div className="button__container">
+                                        {!todo.completed && !todo.edit && (
+                                            <button onClick={() => handleEdit(todo.id)}><BiSolidEditAlt /></button>
+                                        )}
+                                        <button onClick={() => deleteTodo(todo.id)}><BiTrash /></button>
+                                    </div>
                                 </div>
                             )}
                         </Draggable>
