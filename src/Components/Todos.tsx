@@ -46,7 +46,7 @@ const Todos = () => {
                                         checked={todo.completed}
                                         onChange={() => handleComplete(todo.id)}
                                     />
-                                    {todo.edit && <EditInput id={todo.id} task={todo.task} />}
+                                    {todo.edit && <EditInput id={todo.id} edit={todo.edit} task={todo.task} />}
                                     {!todo.edit && (
                                         <label
                                             contentEditable={todo.edit}

@@ -45,19 +45,7 @@ export default function TodoProvider({ children }: TodosProviderProps) {
     }, [])
 
     const handleAddTodo = (task: string) => {
-        setTodos((prev) => {
-            const newTodos: Array<Todo> = [
-                {
-                    id: Math.random().toString(),
-                    task: task,
-                    completed: false,
-                    edit: false,
-                    createdAt: new Date(),
-                },
-                ...prev
-            ]
-            return newTodos;
-        })
+        setTodos([...todos, { id: Math.random().toString(), task: task, completed: false, edit: false, createdAt: new Date() }])
     }
 
 
