@@ -8,7 +8,7 @@
 
 #root {
   min-height: 100vh;
-  padding: 2rem;
+  padding: 1rem;
   color: #fff;
   background: #171e27;
   text-align: center;
@@ -48,7 +48,7 @@ a.active {
 
 .task-wrapper {
   display: flex;
-  padding: 1rem;
+  /* padding: 1rem; */
   flex-direction: column;
   gap: 2.5rem;
   align-items: start;

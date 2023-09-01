@@ -12,7 +12,6 @@ function App() {
 
   const dragEnd = (event: DropResult) => {
     const { source, destination } = event;
-    console.log(source.droppableId, destination?.droppableId);
 
     if (!destination) return;
 

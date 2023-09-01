@@ -16,7 +16,7 @@ export default function EditInput({ task, id, edit }: EditProps) {
     const { completeEdit } = useTodos();
     return (
         <div className='edit__wrapper'>
-            <input autoFocus={edit} type="text" value={editText} onChange={(e) => setEditText(e.target.value)} />
+            <input onKeyDown={(e) => e.key === 'Enter' && completeEdit(id, editText)} autoFocus={edit} type="text" value={editText} onChange={(e) => setEditText(e.target.value)} />
             <button onClick={() => completeEdit(id, editText)}><GrUpdate /></button>
         </div>
     )
